@@ -7,7 +7,6 @@ plugins{
 }
 
 group = 'com.aseem'
-archiveBaseName = 'seleniumTesting'
 version = '1.0.0'
 
 allure {

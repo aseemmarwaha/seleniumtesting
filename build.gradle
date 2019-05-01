@@ -6,6 +6,7 @@ plugins{
     
 }
 
+
 group = 'com.aseem'
 version = '1.0.0'
 
@@ -23,7 +24,7 @@ dependencies{
     testImplementation("com.codeborne:selenide:5.2.2")
     testImplementation("io.qameta.allure:allure-selenide:2.10.0")
     testRuntimeOnly("org.slf4j:slf4j-simple:1.7.26")
-    implementation('io.qameta.allure:allure-okhttp3:2.10.0')
+    implementation('io.qameta.allure:allure-okhttp3:2.10.0')    
 }
 
 tasks.withType(Test){
@@ -34,6 +35,6 @@ tasks.withType(Test){
 	}
     maxParallelForks = (int) (Runtime.runtime.availableProcessors().intdiv(2)?: 1)
 }
-defaultTasks 'check', 'test', 'install'
+defaultTasks 'clean', 'check', 'test', 'install'
 
 wrapper.gradleVersion = "5.4.1"

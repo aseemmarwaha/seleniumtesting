@@ -36,4 +36,4 @@ tasks.withType(Test){
 }
 defaultTasks 'check', 'test', 'install'
 
-wrapper.gradleVersion = "5.4"
+wrapper.gradleVersion = "5.4.1"

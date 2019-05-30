@@ -27,6 +27,10 @@ dependencies{
     implementation('io.qameta.allure:allure-okhttp3:2.10.0')    
 }
 
+task waitForGrid(type: Exec) {
+    commandLine './waitForGrid.sh'
+}
+
 tasks.withType(Test){
     useJUnitPlatform()
     testLogging.showStandardStreams = true

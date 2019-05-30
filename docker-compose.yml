@@ -1,35 +1,36 @@
 version: '3.7'
 
-services: 
-    selenium-hub :
-        restart: always
-        image: selenium/hub:latest
-        container_name: Selenium_Hub
-        entrypoint: tail -f /dev/null
-        ports:
-            - 4444:4444
+services:
+  selenium-hub:
+    restart: always
+    image: selenium/hub:latest
+    container_name: Selenium_Hub    
+    ports:
+      - "4444:4444"
 
-    #selenium-chrome
-    selenium-chrome:
-        restart: always
-        image: selenium/node-chrome-debug
-        stdin_open: true
-        container_name: Node_Chrome
-        depends_on:
-            - selenium-hub
-        entrypoint: tail -f /dev/null
-        links:
-            - selenium-hub:hub        
+  #selenium-chrome
+  selenium-chrome:
+    restart: always
+    image: selenium/node-chrome
+    volumes:
+      - /div/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
 
-    #selenium-firefox
-    selenium-firefox:
-        restart: always
-        image: selenium/node-firefox-debug
-        container_name: Node_Firefox
-        depends_on:
-            - selenium-hub
-        entrypoint: tail -f /dev/null
-        links:
-            - selenium-hub:hub
+  #selenium-firefox
+  selenium-firefox:
+    restart: always
+    image: selenium/node-firefox
+    volumes:
+      - /div/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
 #docker-compose scale selenium-chrome=3 selenium-firefox=3
 #docker-compose down
+#entrypoint: tail -f /dev/null
